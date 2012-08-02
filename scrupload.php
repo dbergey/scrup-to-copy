@@ -67,4 +67,7 @@ header('Content-Type: text/plain; charset=utf-8');
 header('Content-Length: '.strlen($link_url));
 echo $link_url;
 
+// useful if on Mountain Lion and have the terminal-notifier gem installed
+// shell_exec("terminal-notifier -title 'Scruploaded!' -message '{$short}'");
+
 ?>
