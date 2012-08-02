@@ -1,5 +1,12 @@
 <?php
 
+/* 1. Download Scrup:
+ * 2. Put this file on your local web server.
+ * 3. Set Receiver URL in Scrup (with your Copy login/password):
+ *       http://localhost/scrupload.php?name={filename}&username=myemailaddress&password=mypassword
+ * 4. Take screenshots and paste links!
+*/
+
 function rest_call($method, $url, $params, $auth_token = '') {
 	$ctx = array(
 		'http' => array(
