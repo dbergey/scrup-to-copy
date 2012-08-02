@@ -1,7 +1,7 @@
 <?php
 
 /*
- * 1. Download Scrup:
+ * 1. Download Scrup: https://github.com/rsms/scrup#download--install
  * 2. Put this file on your local web server.
  * 3. Set Receiver URL in Scrup (with your Copy login/password):
  *       http://localhost/scrupload.php?name={filename}&username=myemailaddress&password=mypassword
