@@ -55,17 +55,11 @@ $link_info = rest_call('POST', '/rest/links', array(
 ), $auth_info->auth_token);
 $link_info = json_decode($link_info);
 
-$link = $link_info->url;
-$short = $link_info->url_short;
-
-// decide what link to use
-$link_url = $link; // change to $short when landing page works nicely
-
 // return link
 header('HTTP/1.1 201 Created');
 header('Content-Type: text/plain; charset=utf-8');
-header('Content-Length: '.strlen($link_url));
-echo $link_url;
+header('Content-Length: '.strlen($link_info->url_short));
+echo $link_info->url_short;
 
 // useful if on Mountain Lion and have the terminal-notifier gem installed
 // shell_exec("terminal-notifier -title 'Scruploaded!' -message '{$short}'");
