@@ -5,6 +5,7 @@
  * 2. Put this file on your local web server.
  * 3. Set Receiver URL in Scrup (with your Copy login/password):
  *       http://localhost/scrupload.php?name={filename}&username=myemailaddress&password=mypassword
+ *       note that your username and password must be URL-encoded for any special characters to work properly
  * 4. Take screenshots and paste links!
 */
 
@@ -18,7 +19,7 @@ function rest_call($method, $url, $params, $auth_token = '') {
 				'X-Api-Version: 1.0',
 			), ($auth_token ? array('X-Authorization: '. $auth_token) : array())),
 			'content' => !is_array($params) ? $params : join(array_map(function($value, $key) {
-				return $key .'='. $value;
+				return $key .'='. rawurlencode($value);
 			}, $params, array_keys($params)), '&'),
 		)
 	);
@@ -26,9 +27,9 @@ function rest_call($method, $url, $params, $auth_token = '') {
 }
 
 define('REST_ENDPOINT', 'http://api.copy.com');
-define('USERNAME', $_GET['username']);
-define('PASSWORD', $_GET['password']);
-define('FILENAME', $_GET['name']);
+define('USERNAME', rawurldecode($_GET['username']));
+define('PASSWORD', rawurldecode($_GET['password']));
+define('FILENAME', rawurldecode($_GET['name']));
 
 if (!USERNAME || !PASSWORD || !FILENAME) { echo "Missing stuff.\n"; exit; }
 $filedata = file_get_contents('php://input');
@@ -63,5 +64,3 @@ echo $link_info->url_short;
 
 // useful if on Mountain Lion and have the terminal-notifier gem installed
 // shell_exec("terminal-notifier -title 'Scruploaded!' -message '{$short}'");
-
-?>
