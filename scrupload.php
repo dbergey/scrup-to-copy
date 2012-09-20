@@ -63,5 +63,3 @@ echo $link_info->url_short;
 
 // useful if on Mountain Lion and have the terminal-notifier gem installed
 // shell_exec("terminal-notifier -title 'Scruploaded!' -message '{$short}'");
-
-?>
